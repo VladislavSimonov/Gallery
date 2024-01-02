@@ -69,4 +69,8 @@ final class ImageGalleryViewController: UIViewController, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: (_view.frame.width / 3) - 12, height: (_view.frame.width / 3) - 12)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.goToDetails()
+    }
 }

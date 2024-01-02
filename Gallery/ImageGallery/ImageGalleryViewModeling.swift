@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ImageGalleryViewModeling: AnyObject {
-    
+    func goToDetails()
 }

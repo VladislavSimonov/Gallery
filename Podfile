@@ -9,6 +9,7 @@ target 'Gallery' do
 
   # Pods for Gallery
   pod 'SnapKit'
+  pod 'Kingfisher'
 
   target 'GalleryTests' do
     inherit! :search_paths

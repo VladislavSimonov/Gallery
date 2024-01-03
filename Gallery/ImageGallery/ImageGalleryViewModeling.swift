@@ -8,5 +8,9 @@
 import Foundation
 
 protocol ImageGalleryViewModeling: AnyObject {
+    var galleryElements: [GalleryElement] { get }
+    var needReloadCollectionView: (() -> Void)? { get set }
+     
     func goToDetails()
+    func getGalleryElement()
 }

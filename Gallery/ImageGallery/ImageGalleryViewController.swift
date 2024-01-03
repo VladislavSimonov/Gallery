@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ImageGalleryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class ImageGalleryViewController: UIViewController {
     
     var viewModel: ImageGalleryViewModeling!
     private let _view = ImageGalleryView()
@@ -34,13 +34,19 @@ final class ImageGalleryViewController: UIViewController, UICollectionViewDelega
         
         fillUI()
         layout()
+        
+        viewModel.getGalleryElement()
     }
     
     /*
      */
     
     private func fillUI() {
-        
+        viewModel.needReloadCollectionView = { [weak self] in
+            DispatchQueue.main.async {
+                self?._view.collectionView.reloadData()
+            }
+        }
     }
     
     private func layout() {
@@ -55,11 +61,12 @@ final class ImageGalleryViewController: UIViewController, UICollectionViewDelega
     private func setupViewCallbacks() {
         
     }
-    
-    // MARK: - UICollectionView
-    
+}
+
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+extension ImageGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        300
+        viewModel.galleryElements.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

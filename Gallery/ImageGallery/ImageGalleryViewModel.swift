@@ -14,21 +14,27 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     var needReloadCollectionView: (() -> Void)?
     
     private let networkingManager: NetworkingManagerProtocol
+    private var hasNextPage = true
+    private var pageNumber: Int = 1
     
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
         self.networkingManager = NetworkingManager()
     }
     
-    func goToDetails() {
-        coordinator?.goToImageDetailsController()
+    func goToDetails(selectedElementIndex: Int) {
+        coordinator?.goToImageDetailsController(with: galleryElements,
+                                                selectedElementIndex: selectedElementIndex)
     }
     
     func getGalleryElement() {
-        networkingManager.request(endpoint: GalleryAPI.listPhotos) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
+        guard hasNextPage else { return }
+        
+        networkingManager.request(endpoint: GalleryAPI(page: String(pageNumber))) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
             switch result {
             case .success(let galleryElements):
-                self?.galleryElements = galleryElements
+                self?.pageNumber += 1
+                self?.galleryElements.append(contentsOf: galleryElements)
                 self?.needReloadCollectionView?()
             case .failure(let error):
                 print(error)

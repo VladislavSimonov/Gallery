@@ -24,6 +24,11 @@ final class ImageGalleryCell: BaseCollectionViewCell {
         layout()
     }
     
+    func configureImage(with string: String) {
+        let url = URL(string: string)
+        imageView.setImage(withURL: url)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

@@ -31,8 +31,10 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(imageGalleryViewController, animated: true)
     }
     
-    func goToImageDetailsController() {
-        let controller = ImageDetailsViewController(viewModel: ImageDetailsViewModel())
-        navigationController.pushViewController(controller, animated: true)
+    func goToImageDetailsController(with elements: [GalleryElement], selectedElementIndex: Int) {
+        let imageDetailsViewModel = ImageDetailsViewModel(galleryElements: elements,
+                                                          selectedElementIndex: selectedElementIndex)
+        let imageDetailsViewController = ImageDetailsViewController(viewModel: imageDetailsViewModel)
+        navigationController.pushViewController(imageDetailsViewController, animated: true)
     }
 }

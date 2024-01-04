@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ImageDetailsViewModeling: AnyObject {
-    
+    var galleryElements: [GalleryElement] { get }
+    var selectedElementIndex: Int { get }
 }

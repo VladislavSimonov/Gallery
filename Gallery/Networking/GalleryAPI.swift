@@ -7,41 +7,18 @@
 
 import Foundation
 
-enum GalleryAPI: API {
+final class GalleryAPI: API {
+    var scheme: HTTPScheme = .https
+    var method: HTTPMethod = .get
+    var baseURL: String = "api.unsplash.com"
+    var path: String = "/photos/"
+    var apiParameters: [URLQueryItem]
     
-    case listPhotos
-    
-    var scheme: HTTPScheme {
-        switch self {
-        case .listPhotos:
-            return .https
-        }
-    }
-    var method: HTTPMethod {
-        switch self {
-        case .listPhotos:
-            return .get
-        }
-    }
-    var baseURL: String {
-        switch self {
-        case .listPhotos:
-            return "api.unsplash.com"
-        }
-    }
-        
-    var path: String {
-        switch self {
-        case .listPhotos:
-            return "/photos/"
-        }
-    }
-        
-    var apiParameters: [URLQueryItem] {
-        switch self {
-        case .listPhotos:
-            return [
-                URLQueryItem(name: "client_id", value: "uk8h2ufbP7JSFCkTGrAdKJCqb-SfK2NXQjmIlhsVMiM")]
-        }
+    init(page: String) {
+        apiParameters = [
+            URLQueryItem(name: "client_id", value: "uk8h2ufbP7JSFCkTGrAdKJCqb-SfK2NXQjmIlhsVMiM"),
+            URLQueryItem(name: "page", value: page),
+            URLQueryItem(name: "per_page", value: "30")
+        ]
     }
 }

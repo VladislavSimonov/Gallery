@@ -11,6 +11,6 @@ protocol ImageGalleryViewModeling: AnyObject {
     var galleryElements: [GalleryElement] { get }
     var needReloadCollectionView: (() -> Void)? { get set }
      
-    func goToDetails()
+    func goToDetails(selectedElementIndex: Int)
     func getGalleryElement()
 }

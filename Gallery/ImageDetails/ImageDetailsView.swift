@@ -9,12 +9,17 @@ import UIKit
 
 final class ImageDetailsView: UIView {
     
-    lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .darkGray
-        return imageView
+    lazy var imageDetailsScrollView: ImageCardScrollView = {
+        let cardScrollView = ImageCardScrollView()
+        return cardScrollView
     }()
     
+//    lazy var imageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.backgroundColor = .darkGray
+//        return imageView
+//    }()
+//    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -29,15 +34,21 @@ final class ImageDetailsView: UIView {
     /*
      */
     
+    func setupCards(_ cards: [ImageCardView], currentPage: Int) {
+        imageDetailsScrollView.setupCards(cards, currentPage: currentPage)
+        
+        imageDetailsScrollView.cards.forEach { ($0 as? ImageCardView)?.layout() }
+    }
+    
     private func setupViews() {
-        addSubview(imageView)
+        addSubview(imageDetailsScrollView)
     }
     
     func layout() {
-        imageView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(32)
-            make.height.equalTo(UIScreen.main.bounds.height / 3)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(32)
+        imageDetailsScrollView.snp.remakeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+            make.center.equalToSuperview()
         }
     }
 }

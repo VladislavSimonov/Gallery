@@ -33,6 +33,11 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
         networkingManager.request(endpoint: GalleryAPI(page: String(pageNumber))) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
             switch result {
             case .success(let galleryElements):
+                guard galleryElements.count > 0 else { 
+                    self?.hasNextPage = false
+                    return
+                }
+                
                 self?.pageNumber += 1
                 self?.galleryElements.append(contentsOf: galleryElements)
                 self?.needReloadCollectionView?()

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0CAB86B45DE46ACA5365B57A /* Pods_GalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B312C6A2148519F764AE22C2 /* Pods_GalleryTests.framework */; };
+		A00B8D9D2B47475E00842B64 /* ImageCardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B8D9C2B47475E00842B64 /* ImageCardScrollView.swift */; };
+		A00B8D9F2B474B1F00842B64 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B8D9E2B474B1F00842B64 /* ImageCardView.swift */; };
+		A00B8DA32B481D1200842B64 /* ImageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B8DA22B481D1200842B64 /* ImageCardViewModel.swift */; };
+		A00B8DA52B481D1E00842B64 /* ImageCardViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00B8DA42B481D1E00842B64 /* ImageCardViewModeling.swift */; };
 		A01394702B45D2A60080F9F6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A013946F2B45D2A60080F9F6 /* API.swift */; };
 		A01394722B45D2C80080F9F6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01394712B45D2C80080F9F6 /* HTTPMethod.swift */; };
 		A01394742B45D2D40080F9F6 /* HTTPScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01394732B45D2D40080F9F6 /* HTTPScheme.swift */; };
@@ -60,6 +64,10 @@
 		1DD02FA552A3CB228237C38E /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
 		8AF3390639CEBB6D183CF616 /* Pods_Gallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE4FAE253D666F8A69888DC /* Pods-GalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryTests.release.xcconfig"; path = "Target Support Files/Pods-GalleryTests/Pods-GalleryTests.release.xcconfig"; sourceTree = "<group>"; };
+		A00B8D9C2B47475E00842B64 /* ImageCardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardScrollView.swift; sourceTree = "<group>"; };
+		A00B8D9E2B474B1F00842B64 /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		A00B8DA22B481D1200842B64 /* ImageCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardViewModel.swift; sourceTree = "<group>"; };
+		A00B8DA42B481D1E00842B64 /* ImageCardViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardViewModeling.swift; sourceTree = "<group>"; };
 		A013946F2B45D2A60080F9F6 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A01394712B45D2C80080F9F6 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A01394732B45D2D40080F9F6 /* HTTPScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPScheme.swift; sourceTree = "<group>"; };
@@ -140,10 +148,28 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A00B8DA02B481CB700842B64 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A013947C2B45EFE30080F9F6 /* GalleryElementModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A00B8DA12B481CF400842B64 /* ImageCard */ = {
+			isa = PBXGroup;
+			children = (
+				A06E25852B481F8B0058A61E /* ImageCardScrollView */,
+				A00B8D9E2B474B1F00842B64 /* ImageCardView.swift */,
+				A00B8DA22B481D1200842B64 /* ImageCardViewModel.swift */,
+				A00B8DA42B481D1E00842B64 /* ImageCardViewModeling.swift */,
+			);
+			path = ImageCard;
+			sourceTree = "<group>";
+		};
 		A013946E2B45D2980080F9F6 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				A013947B2B45EFD10080F9F6 /* Model */,
 				A013946F2B45D2A60080F9F6 /* API.swift */,
 				A01394712B45D2C80080F9F6 /* HTTPMethod.swift */,
 				A01394732B45D2D40080F9F6 /* HTTPScheme.swift */,
@@ -154,20 +180,20 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		A013947B2B45EFD10080F9F6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A013947C2B45EFE30080F9F6 /* GalleryElementModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		A01394812B45F73C0080F9F6 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
 				A01394822B45F7510080F9F6 /* UIImageView+Extensions.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		A06E25852B481F8B0058A61E /* ImageCardScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				A00B8D9C2B47475E00842B64 /* ImageCardScrollView.swift */,
+			);
+			path = ImageCardScrollView;
 			sourceTree = "<group>";
 		};
 		A0C2D7352B44676300F64E61 /* Cells */ = {
@@ -189,6 +215,7 @@
 		A0C2D73B2B44A64D00F64E61 /* ImageDetails */ = {
 			isa = PBXGroup;
 			children = (
+				A00B8DA12B481CF400842B64 /* ImageCard */,
 				A0C2D73C2B44A67900F64E61 /* ImageDetailsView.swift */,
 				A0C2D73E2B44A68000F64E61 /* ImageDetailsViewController.swift */,
 				A0C2D7402B44A68700F64E61 /* ImageDetailsViewModel.swift */,
@@ -232,6 +259,7 @@
 			children = (
 				A01394812B45F73C0080F9F6 /* Extentions */,
 				A013946E2B45D2980080F9F6 /* Networking */,
+				A00B8DA02B481CB700842B64 /* Models */,
 				A0C2D7462B44AEB800F64E61 /* Coordinator */,
 				A0C2D7382B44849C00F64E61 /* BaseClasses */,
 				A0F743ED2B3F6679001C4202 /* ImageGallery */,
@@ -531,11 +559,14 @@
 				A01394762B45D2EA0080F9F6 /* NetworkingError.swift in Sources */,
 				A013947A2B45D51B0080F9F6 /* GalleryAPI.swift in Sources */,
 				A01394702B45D2A60080F9F6 /* API.swift in Sources */,
+				A00B8DA52B481D1E00842B64 /* ImageCardViewModeling.swift in Sources */,
 				A01394742B45D2D40080F9F6 /* HTTPScheme.swift in Sources */,
+				A00B8D9D2B47475E00842B64 /* ImageCardScrollView.swift in Sources */,
 				A0C2D73D2B44A67900F64E61 /* ImageDetailsView.swift in Sources */,
 				A0F743BF2B3F628F001C4202 /* ImageGalleryViewController.swift in Sources */,
 				A0F743F12B3F66F2001C4202 /* ImageGalleryView.swift in Sources */,
 				A01394782B45D3020080F9F6 /* NetworkingManager.swift in Sources */,
+				A00B8D9F2B474B1F00842B64 /* ImageCardView.swift in Sources */,
 				A0C2D7372B44677600F64E61 /* ImageGalleryCell.swift in Sources */,
 				A0C2D7412B44A68700F64E61 /* ImageDetailsViewModel.swift in Sources */,
 				A0F743BB2B3F628F001C4202 /* AppDelegate.swift in Sources */,
@@ -545,6 +576,7 @@
 				A0C2D7482B44AEC600F64E61 /* MainCoordinator.swift in Sources */,
 				A0F743F32B3F66FB001C4202 /* ImageGalleryViewModeling.swift in Sources */,
 				A013947D2B45EFE30080F9F6 /* GalleryElementModel.swift in Sources */,
+				A00B8DA32B481D1200842B64 /* ImageCardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

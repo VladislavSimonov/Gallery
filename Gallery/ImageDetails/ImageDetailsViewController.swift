@@ -40,8 +40,8 @@ final class ImageDetailsViewController: UIViewController {
      */
     
     private func fillUI() {
-        let url = URL(string: viewModel.galleryElements[viewModel.selectedElementIndex].urls.regular)
-        _view.imageView.setImage(withURL: url)
+        _view.setupCards(viewModel.createImageCards(), 
+                         currentPage: viewModel.selectedElementIndex)
     }
     
     private func layout() {

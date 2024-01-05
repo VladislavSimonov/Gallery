@@ -16,4 +16,18 @@ final class ImageDetailsViewModel: ImageDetailsViewModeling {
         self.galleryElements = galleryElements
         self.selectedElementIndex = selectedElementIndex
     }
+    
+    func createImageCards() -> [ImageCardView] {
+        var imageCards: [ImageCardView] = []
+        
+        for galleryElement in galleryElements {
+            guard let url = URL(string: galleryElement.urls.regular) else { continue }
+            let viewModel = ImageCardViewModel(url: url,
+                                                   descriptionText: galleryElement.description ?? "",
+                                                   likeByUser: galleryElement.likedByUser)
+            imageCards.append(ImageCardView(viewModel: viewModel))
+        }
+        
+        return imageCards
+    }
 }

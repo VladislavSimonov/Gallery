@@ -22,7 +22,7 @@ final class ImageCardView: UIView {
         label.font = .systemFont(ofSize: 20)
         label.textColor = .red
         label.numberOfLines = 0
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.1
         return label
@@ -74,27 +74,36 @@ final class ImageCardView: UIView {
     private func fillUI() {
         imageView.setImage(withURL: viewModel.url)
         imageDescription.text = viewModel.descriptionText
-        likeButton.isSelected = viewModel.likeByUser
+        likeButton.isSelected = false
     }
     
     func layout() {
-        imageView.snp.makeConstraints { make in
-            make.leading.top.trailing.equalToSuperview()
+        imageView.snp.remakeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? 300: 0)
             make.height.equalTo(UIScreen.main.bounds.height / 1.6)
         }
         
-        imageDescription.snp.makeConstraints { make in
+        imageDescription.snp.remakeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).inset(-14)
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(64)
-            make.bottom.equalToSuperview()
+            make.leading.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? 300: 16)
+            make.trailing.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? 300: 64)
+            if UIDevice.current.orientation != .portrait {
+                make.height.equalTo(60)
+            } else {
+                make.bottom.equalToSuperview()
+            }
         }
         
-        likeButton.snp.makeConstraints { make in
-            make.leading.equalTo(imageDescription.snp.trailing).inset(8)
-            make.centerY.equalTo(imageDescription.snp.centerY)
-            make.height.width.equalTo(64)
-            make.trailing.equalToSuperview()
+        likeButton.snp.remakeConstraints { make in
+            if imageDescription.text?.isEmpty == true {
+                make.top.equalTo(imageView.snp.bottom).inset(-24)
+                make.centerX.equalTo(imageView.snp.centerX)
+            } else {
+                make.leading.equalTo(imageDescription.snp.trailing).inset(-16)
+                make.centerY.equalTo(imageDescription.snp.centerY)
+            }
+            make.height.width.equalTo(40)
         }
     }
 }

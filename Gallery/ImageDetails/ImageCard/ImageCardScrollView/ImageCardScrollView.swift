@@ -16,6 +16,7 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
     }
     
     var cards: [UIView] = []
+    var didScrolledToIndex: ((Int)->Void)?
     
     private var scrollViewSize: CGSize {
         CGSize(width: frame.width - Constants.spaceBetweenElements * 3,
@@ -63,6 +64,16 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
     /*
      */
     
+    func recalculateFrame() {
+        let screenWidth = UIScreen.main.bounds.width
+        let defaultSize = CGSize(width: 375, height: UIScreen.main.bounds.height / 1.3)
+        let calculatedHeight = defaultSize.height * screenWidth / defaultSize.width
+        let cardSize = CGSize(width: screenWidth, height: calculatedHeight)
+        
+        frame = CGRect(origin: .zero,
+                       size: cardSize)
+    }
+    
     private func setupViews() {
         addSubview(scrollView)
     }
@@ -70,7 +81,7 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
     private func layout() {
         scrollView.snp.remakeConstraints { make in
             make.size.equalTo(scrollViewSize)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
         }
     }
@@ -148,6 +159,8 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard decelerating else { return }
         decelerating = false
+        
+        didScrolledToIndex?(Int(round(scrollView.contentOffset.x / scrollView.frame.width)))
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

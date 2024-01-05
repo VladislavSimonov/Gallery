@@ -13,17 +13,11 @@ final class ImageDetailsView: UIView {
         let cardScrollView = ImageCardScrollView()
         return cardScrollView
     }()
-    
-//    lazy var imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.backgroundColor = .darkGray
-//        return imageView
-//    }()
-//    
+        
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        backgroundColor = .green
+        backgroundColor = .clear
         setupViews()
     }
     
@@ -36,7 +30,6 @@ final class ImageDetailsView: UIView {
     
     func setupCards(_ cards: [ImageCardView], currentPage: Int) {
         imageDetailsScrollView.setupCards(cards, currentPage: currentPage)
-        
         imageDetailsScrollView.cards.forEach { ($0 as? ImageCardView)?.layout() }
     }
     

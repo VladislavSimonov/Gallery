@@ -8,13 +8,13 @@
 import Foundation
 
 final class ImageCardViewModel: ImageCardViewModeling {
+    var id: String
     var url: URL
     var descriptionText: String
-    var likeByUser: Bool
     
-    init(url: URL, descriptionText: String, likeByUser: Bool) {
+    init(id: String, url: URL, descriptionText: String) {
+        self.id = id
         self.url = url
         self.descriptionText = descriptionText
-        self.likeByUser = likeByUser
     }
 }

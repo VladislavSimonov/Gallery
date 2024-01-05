@@ -9,7 +9,8 @@ import Foundation
 
 protocol ImageDetailsViewModeling: AnyObject {
     var galleryElements: [GalleryElement] { get }
-    var selectedElementIndex: Int { get }
+    var currentElementIndex: Int { get }
     
+    func didScrolled(to index: Int)
     func createImageCards() -> [ImageCardView]
 }

@@ -36,12 +36,20 @@ final class ImageDetailsViewController: UIViewController {
         layout()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        _view.imageDetailsScrollView.recalculateFrame()
+        _view.setupCards(viewModel.createImageCards(),
+                         currentPage: viewModel.currentElementIndex)
+    }
+    
     /*
      */
     
     private func fillUI() {
         _view.setupCards(viewModel.createImageCards(), 
-                         currentPage: viewModel.selectedElementIndex)
+                         currentPage: viewModel.currentElementIndex)
     }
     
     private func layout() {
@@ -53,6 +61,8 @@ final class ImageDetailsViewController: UIViewController {
     }
     
     private func setupViewCallbacks() {
-        
+        _view.imageDetailsScrollView.didScrolledToIndex = { [weak self] index in
+            self?.viewModel.didScrolled(to: index)
+        }
     }
 }

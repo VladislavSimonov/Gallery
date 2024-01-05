@@ -9,12 +9,16 @@ import Foundation
 
 final class ImageDetailsViewModel: ImageDetailsViewModeling {
     var galleryElements: [GalleryElement] = []
-    var selectedElementIndex: Int
+    var currentElementIndex: Int
     
     init(galleryElements: [GalleryElement],
          selectedElementIndex: Int) {
         self.galleryElements = galleryElements
-        self.selectedElementIndex = selectedElementIndex
+        self.currentElementIndex = selectedElementIndex
+    }
+    
+    func didScrolled(to index: Int) {
+        currentElementIndex = index
     }
     
     func createImageCards() -> [ImageCardView] {
@@ -22,9 +26,9 @@ final class ImageDetailsViewModel: ImageDetailsViewModeling {
         
         for galleryElement in galleryElements {
             guard let url = URL(string: galleryElement.urls.regular) else { continue }
-            let viewModel = ImageCardViewModel(url: url,
-                                                   descriptionText: galleryElement.description ?? "",
-                                                   likeByUser: galleryElement.likedByUser)
+            let viewModel = ImageCardViewModel(id: galleryElement.id,
+                                               url: url,
+                                               descriptionText: galleryElement.description ?? "")
             imageCards.append(ImageCardView(viewModel: viewModel))
         }
         

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class ImageGalleryView: UIView, Loadable {
+final class ImageGalleryView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()

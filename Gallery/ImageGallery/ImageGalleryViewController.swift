@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ImageGalleryViewController: UIViewController, ErrorPresentable {
+final class ImageGalleryViewController: UIViewController {
     
     private var viewModel: ImageGalleryViewModeling
     private let _view = ImageGalleryView()
@@ -64,7 +64,7 @@ final class ImageGalleryViewController: UIViewController, ErrorPresentable {
         
         viewModel.showError = { [weak self] error in
             DispatchQueue.main.async {
-                self?.showAlert(with: error, retryAction: { _ in
+                self?.showAlert(with: error.localizedDescription, retryAction: { _ in
                     self?._view.showLoader()
                     self?.viewModel.getGalleryElement()
                 })

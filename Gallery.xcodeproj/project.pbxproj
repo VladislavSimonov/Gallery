@@ -24,7 +24,8 @@
 		A02D8EF42B49741900665A51 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8EF32B49741900665A51 /* Encodable+Extensions.swift */; };
 		A02D8EF62B49743300665A51 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8EF52B49743300665A51 /* Data+Extensions.swift */; };
 		A02D8EFA2B4986AE00665A51 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8EF92B4986AE00665A51 /* Loadable.swift */; };
-		A02D8EFC2B4987C400665A51 /* ErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8EFB2B4987C400665A51 /* ErrorPresentable.swift */; };
+		A094BC942B49EBD700489137 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BC932B49EBD700489137 /* UIViewController+Extensions.swift */; };
+		A094BC962B49ED9400489137 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BC952B49ED9400489137 /* UIView+Extensions.swift */; };
 		A0C2D7372B44677600F64E61 /* ImageGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D7362B44677600F64E61 /* ImageGalleryCell.swift */; };
 		A0C2D73A2B4484B500F64E61 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D7392B4484B500F64E61 /* BaseCollectionViewCell.swift */; };
 		A0C2D73D2B44A67900F64E61 /* ImageDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C2D73C2B44A67900F64E61 /* ImageDetailsView.swift */; };
@@ -85,7 +86,8 @@
 		A02D8EF32B49741900665A51 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		A02D8EF52B49743300665A51 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		A02D8EF92B4986AE00665A51 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
-		A02D8EFB2B4987C400665A51 /* ErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresentable.swift; sourceTree = "<group>"; };
+		A094BC932B49EBD700489137 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		A094BC952B49ED9400489137 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		A0C2D7362B44677600F64E61 /* ImageGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCell.swift; sourceTree = "<group>"; };
 		A0C2D7392B4484B500F64E61 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		A0C2D73C2B44A67900F64E61 /* ImageDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailsView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,8 @@
 				A01394822B45F7510080F9F6 /* UIImageView+Extensions.swift */,
 				A02D8EF32B49741900665A51 /* Encodable+Extensions.swift */,
 				A02D8EF52B49743300665A51 /* Data+Extensions.swift */,
+				A094BC932B49EBD700489137 /* UIViewController+Extensions.swift */,
+				A094BC952B49ED9400489137 /* UIView+Extensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -212,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				A02D8EF92B4986AE00665A51 /* Loadable.swift */,
-				A02D8EFB2B4987C400665A51 /* ErrorPresentable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				A0F743C52B3F628F001C4202 /* Gallery.xcdatamodeld in Sources */,
 				A0C2D73A2B4484B500F64E61 /* BaseCollectionViewCell.swift in Sources */,
 				A01394762B45D2EA0080F9F6 /* NetworkingError.swift in Sources */,
+				A094BC962B49ED9400489137 /* UIView+Extensions.swift in Sources */,
 				A013947A2B45D51B0080F9F6 /* GalleryAPI.swift in Sources */,
 				A01394702B45D2A60080F9F6 /* API.swift in Sources */,
 				A00B8DA52B481D1E00842B64 /* ImageCardViewModeling.swift in Sources */,
@@ -610,7 +614,7 @@
 				A0C2D7482B44AEC600F64E61 /* MainCoordinator.swift in Sources */,
 				A0F743F32B3F66FB001C4202 /* ImageGalleryViewModeling.swift in Sources */,
 				A013947D2B45EFE30080F9F6 /* GalleryElementModel.swift in Sources */,
-				A02D8EFC2B4987C400665A51 /* ErrorPresentable.swift in Sources */,
+				A094BC942B49EBD700489137 /* UIViewController+Extensions.swift in Sources */,
 				A00B8DA32B481D1200842B64 /* ImageCardViewModel.swift in Sources */,
 				A02D8EFA2B4986AE00665A51 /* Loadable.swift in Sources */,
 			);

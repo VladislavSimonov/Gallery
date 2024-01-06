@@ -36,9 +36,9 @@ final class ImageDetailsViewModel: ImageDetailsViewModeling {
             
             viewModel.likeButtonDidTouch = {
                 if galleryElement.isLiked == true {
-                    self.storage.faivoriteImagesSet.remove(galleryElement.id)
+                    self.storage.removeFromFavourites(galleryElement.id)
                 } else {
-                    self.storage.faivoriteImagesSet.insert(galleryElement.id)
+                    self.storage.addToFavourites(galleryElement.id)
                 }
             }
             

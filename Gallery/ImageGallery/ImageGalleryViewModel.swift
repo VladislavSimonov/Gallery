@@ -9,7 +9,7 @@ import Foundation
 
 final class ImageGalleryViewModel: ImageGalleryViewModeling {
     
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: ImageDetailsCoordinator?
     var galleryElements: [GalleryElement] = []
     var needReloadCollectionView: (() -> Void)?
     var showError: ((NetworkingError) -> Void)?
@@ -20,7 +20,7 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     private var hasNextPage = true
     private var pageNumber: Int = 1
     
-    init(coordinator: MainCoordinator,
+    init(coordinator: ImageDetailsCoordinator,
          networkingManager: NetworkingManagerProtocol = NetworkingManager(),
          storage: StorageServiceProtocol) {
         self.coordinator = coordinator
@@ -31,7 +31,7 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     func tagLikedPhotos() {
         galleryElements = galleryElements.map { mutableElement in
             var element = mutableElement
-            element.isLiked = storage.faivoriteImagesSet.contains(element.id)
+            element.isLiked = storage.isFavourite(element.id)
             return element
         }
     }
@@ -60,7 +60,7 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
                 
                 galleryElements = galleryElements.map { mutableElement in
                     var element = mutableElement
-                    element.isLiked = self?.storage.faivoriteImagesSet.contains(element.id)
+                    element.isLiked = self?.storage.isFavourite(element.id)
                     return element
                 }
                                 

@@ -25,7 +25,7 @@ final class NetworkingManager: NetworkingManagerProtocol {
         let components = buildURL(endpoint: endpoint)
         
         guard let url = components.url else {
-            completion(.failure(.unableToComplete))
+            completion(.failure(.invalidURL))
             return
         }
         
@@ -36,7 +36,7 @@ final class NetworkingManager: NetworkingManagerProtocol {
         
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             
-            if error != nil {
+            guard error == nil else {
                 completion(.failure(.invalidURL))
                 return
             }

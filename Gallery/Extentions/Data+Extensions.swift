@@ -12,7 +12,7 @@ extension Data {
         try? decoded()
     }
 
-    func decoded<T: Decodable>() throws -> T {
+    private func decoded<T: Decodable>() throws -> T {
         try JSONDecoder().decode(T.self, from: self)
     }
 }

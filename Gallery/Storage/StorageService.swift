@@ -8,7 +8,9 @@
 import Foundation
 
 protocol StorageServiceProtocol: AnyObject {
-    var faivoriteImagesSet: Set<String> { get set }
+    func addToFavourites(_ string: String)
+    func removeFromFavourites(_ string: String)
+    func isFavourite(_ string: String) -> Bool
 }
 
 final class StorageService: StorageServiceProtocol {
@@ -17,23 +19,34 @@ final class StorageService: StorageServiceProtocol {
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
     }
-}
-
-extension StorageService {
-    var faivoriteImagesSet: Set<String> {
-        get { data(.faivoriteImagesSet)?.maybeDecoded() ?? Set<String>() }
-        set { set(newValue.maybeEncoded(), key: .faivoriteImagesSet) }
+    
+    func isFavourite(_ string: String) -> Bool {
+        favoriteImagesSet.contains(string)
+    }
+    
+    func addToFavourites(_ string: String) {
+        favoriteImagesSet.insert(string)
+    }
+    
+    func removeFromFavourites(_ string: String) {
+        favoriteImagesSet.remove(string)
     }
 }
 
-private enum Keys: String, CaseIterable {
-    case faivoriteImagesSet = "gallery.faivoriteImagesSet.key"
+extension StorageService {
+    var favoriteImagesSet: Set<String> {
+        get { data(.favoriteImagesSet)?.maybeDecoded() ?? Set<String>() }
+        set { set(newValue.maybeEncoded(), key: .favoriteImagesSet) }
+    }
+}
+
+private enum Keys: String {
+    case favoriteImagesSet = "gallery.faivoriteImagesSet.key"
 }
 
 private extension StorageService {
     func set(_ value: Any?, key: Keys) {
         userDefaults.setValue(value, forKey: key.rawValue)
-        userDefaults.synchronize()
     }
     
     func data(_ key: Keys) -> Data? {

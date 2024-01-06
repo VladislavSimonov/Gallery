@@ -8,12 +8,14 @@
 import UIKit
 
 protocol Coordinator: AnyObject {
-    var navigationController: UINavigationController { get set }
-    
     func start()
 }
 
-class MainCoordinator: Coordinator {
+protocol ImageDetailsCoordinator: AnyObject {
+    func goToImageDetailsController(with elements: [GalleryElement], selectedElementIndex: Int)
+}
+
+class MainCoordinator: Coordinator, ImageDetailsCoordinator {
     
     var navigationController: UINavigationController
     private let storage: StorageServiceProtocol
@@ -27,7 +29,7 @@ class MainCoordinator: Coordinator {
         goToImageGalleryController()
     }
     
-    func goToImageGalleryController() {
+    private func goToImageGalleryController() {
         let imageGalleryViewModel = ImageGalleryViewModel(coordinator: self, storage: storage)
         let imageGalleryViewController = ImageGalleryViewController(viewModel: imageGalleryViewModel)
         navigationController.pushViewController(imageGalleryViewController, animated: true)

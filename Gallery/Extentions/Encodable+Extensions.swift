@@ -12,7 +12,7 @@ extension Encodable {
         try? encoded()
     }
 
-    func encoded() throws -> Data {
+    private func encoded() throws -> Data {
         try JSONEncoder().encode(self)
     }
 }

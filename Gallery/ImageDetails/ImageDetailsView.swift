@@ -39,9 +39,7 @@ final class ImageDetailsView: UIView {
     
     func layout() {
         imageDetailsScrollView.snp.remakeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview()
-            make.center.equalToSuperview()
+            make.leading.trailing.top.bottom.equalToSuperview()
         }
     }
 }

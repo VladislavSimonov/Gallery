@@ -7,4 +7,33 @@
 
 import UIKit
 
+protocol Loadable {
+    func showLoader()
+    func hideLoader()
+}
+
+extension Loadable where Self: UIView {
+    func showLoader() {
+        if let activityIndicator = findActivity() {
+            activityIndicator.startAnimating()
+        } else {
+            let activityIndicator = UIActivityIndicatorView(style: .large)
+            activityIndicator.startAnimating()
+            addSubview(activityIndicator)
+            
+            activityIndicator.snp.makeConstraints { make in
+                make.centerX.centerY.equalToSuperview()
+            }
+        }
+    }
+    
+    func hideLoader() {
+        findActivity()?.stopAnimating()
+    }
+    
+    private func findActivity() -> UIActivityIndicatorView? {
+        subviews.compactMap { $0 as? UIActivityIndicatorView }.first
+    }
+}
+
 extension UIView: Loadable { }

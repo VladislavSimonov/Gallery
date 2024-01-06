@@ -45,10 +45,8 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
      */
     
     init(size: CGSize? = nil) {
-        let screenWidth = UIScreen.main.bounds.width
-        let defaultSize = CGSize(width: 375, height: UIScreen.main.bounds.height / 1.3)
-        let calculatedHeight = defaultSize.height * screenWidth / defaultSize.width
-        let cardSize = CGSize(width: screenWidth, height: calculatedHeight)
+        let cardSize = CGSize(width: UIScreen.main.bounds.width,
+                              height: UIScreen.main.bounds.height / 1.2)
         
         super.init(frame: CGRect(origin: .zero,
                                  size: size ?? cardSize))
@@ -65,11 +63,8 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
      */
     
     func recalculateFrame() {
-        let screenWidth = UIScreen.main.bounds.width
-        let defaultSize = CGSize(width: 375, height: UIScreen.main.bounds.height / 1.3)
-        let calculatedHeight = defaultSize.height * screenWidth / defaultSize.width
-        let cardSize = CGSize(width: screenWidth, height: calculatedHeight)
-        
+        let cardSize = CGSize(width: UIScreen.main.bounds.width,
+                              height: UIScreen.main.bounds.height / 1.2)
         frame = CGRect(origin: .zero,
                        size: cardSize)
     }

@@ -12,7 +12,7 @@ protocol Loadable {
     func hideLoader()
 }
 
-extension Loadable where Self: UIView {
+extension UIView: Loadable { 
     func showLoader() {
         if let activityIndicator = findActivity() {
             activityIndicator.startAnimating()
@@ -35,5 +35,3 @@ extension Loadable where Self: UIView {
         subviews.compactMap { $0 as? UIActivityIndicatorView }.first
     }
 }
-
-extension UIView: Loadable { }

@@ -38,6 +38,13 @@ final class ImageGalleryViewController: UIViewController {
         viewModel.getGalleryElement()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.tagLikedPhotos()
+        _view.collectionView.reloadData()
+    }
+    
     /*
      */
     
@@ -71,7 +78,8 @@ extension ImageGalleryViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageGalleryCell.identifier, for: indexPath) as? ImageGalleryCell
-        cell?.configureImage(with: viewModel.galleryElements[indexPath.item].urls.small)
+        let element = viewModel.getElementByIndexPath(indexPath)
+        cell?.configureCell(with: element.urls.small, isImageLiked: element.isLiked ?? false)
         return cell ?? UICollectionViewCell()
     }
     

@@ -23,7 +23,6 @@ final class ImageGalleryView: UIView {
                                               collectionViewLayout: flowLayout)
         collectionView.register(ImageGalleryCell.self,
                                 forCellWithReuseIdentifier: ImageGalleryCell.identifier)
-        collectionView.backgroundColor = .red
         return collectionView
     }()
     

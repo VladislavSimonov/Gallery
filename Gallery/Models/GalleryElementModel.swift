@@ -11,6 +11,8 @@ struct GalleryElement: Codable {
     let id: String
     let description: String?
     let urls: Urls
+    
+    var isLiked: Bool?
 }
 
 struct Urls: Codable {

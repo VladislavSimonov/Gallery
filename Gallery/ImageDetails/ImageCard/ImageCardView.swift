@@ -37,6 +37,7 @@ final class ImageCardView: UIView {
     }()
     
     @objc func buttonDidTap() {
+        viewModel.likeButtonDidTouch?()
         likeButton.isSelected.toggle()
     }
     
@@ -74,7 +75,7 @@ final class ImageCardView: UIView {
     private func fillUI() {
         imageView.setImage(withURL: viewModel.url)
         imageDescription.text = viewModel.descriptionText
-        likeButton.isSelected = false
+        likeButton.isSelected = viewModel.isPhotoLiked
     }
     
     func layout() {

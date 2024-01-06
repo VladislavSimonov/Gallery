@@ -14,12 +14,28 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     var needReloadCollectionView: (() -> Void)?
     
     private let networkingManager: NetworkingManagerProtocol
+    private let storage: StorageServiceProtocol
     private var hasNextPage = true
     private var pageNumber: Int = 1
     
-    init(coordinator: MainCoordinator) {
+    init(coordinator: MainCoordinator,
+         networkingManager: NetworkingManagerProtocol = NetworkingManager(),
+         storage: StorageServiceProtocol) {
         self.coordinator = coordinator
-        self.networkingManager = NetworkingManager()
+        self.networkingManager = networkingManager
+        self.storage = storage
+    }
+    
+    func tagLikedPhotos() {
+        galleryElements = galleryElements.map { mutableElement in
+            var element = mutableElement
+            element.isLiked = storage.faivoriteImagesSet.contains(element.id)
+            return element
+        }
+    }
+    
+    func getElementByIndexPath(_ indexPath: IndexPath) -> GalleryElement {
+        galleryElements[indexPath.item]
     }
     
     func goToDetails(selectedElementIndex: Int) {
@@ -32,12 +48,18 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
         
         networkingManager.request(endpoint: GalleryAPI(page: String(pageNumber))) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
             switch result {
-            case .success(let galleryElements):
-                guard galleryElements.count > 0 else { 
+            case .success(var galleryElements):
+                guard galleryElements.count > 0 else {
                     self?.hasNextPage = false
                     return
                 }
                 
+                galleryElements = galleryElements.map { mutableElement in
+                    var element = mutableElement
+                    element.isLiked = self?.storage.faivoriteImagesSet.contains(element.id)
+                    return element
+                }
+                                
                 self?.pageNumber += 1
                 self?.galleryElements.append(contentsOf: galleryElements)
                 self?.needReloadCollectionView?()

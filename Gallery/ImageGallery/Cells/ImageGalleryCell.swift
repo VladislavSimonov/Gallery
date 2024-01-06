@@ -17,6 +17,12 @@ final class ImageGalleryCell: BaseCollectionViewCell {
         return imageView
     }()
     
+    lazy var likeImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "heart.fill")
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,9 +30,10 @@ final class ImageGalleryCell: BaseCollectionViewCell {
         layout()
     }
     
-    func configureImage(with string: String) {
-        let url = URL(string: string)
+    func configureCell(with URLstring: String, isImageLiked: Bool) {
+        let url = URL(string: URLstring)
         imageView.setImage(withURL: url)
+        likeImage.isHidden = !isImageLiked
     }
     
     override func layoutSubviews() {
@@ -47,11 +54,17 @@ final class ImageGalleryCell: BaseCollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(imageView)
+        contentView.addSubview(likeImage)
     }
     
     private func layout() {
         imageView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
+        likeImage.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(3)
+            make.bottom.equalToSuperview().inset(3)
         }
     }
 }

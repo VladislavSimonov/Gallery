@@ -17,5 +17,4 @@ struct GalleryElement: Codable {
 
 struct Urls: Codable {
     let regular: String
-    let small: String
 }

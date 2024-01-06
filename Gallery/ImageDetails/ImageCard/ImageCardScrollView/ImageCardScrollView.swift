@@ -81,7 +81,7 @@ final class ImageCardScrollView: UIView, UIScrollViewDelegate {
     private func layout() {
         scrollView.snp.remakeConstraints { make in
             make.size.equalTo(scrollViewSize)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(16)
             make.centerX.equalToSuperview()
         }
     }

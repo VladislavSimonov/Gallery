@@ -46,6 +46,12 @@ final class ImageGalleryViewController: UIViewController, ErrorPresentable {
         _view.collectionView.reloadData()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        _view.collectionView.reloadData()
+    }
+    
     /*
      */
     
@@ -95,7 +101,7 @@ extension ImageGalleryViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageGalleryCell.identifier, for: indexPath) as? ImageGalleryCell
         let element = viewModel.getElementByIndexPath(indexPath)
-        cell?.configureCell(with: element.urls.small, isImageLiked: element.isLiked ?? false)
+        cell?.configureCell(with: element.urls.regular, isImageLiked: element.isLiked ?? false)
         return cell ?? UICollectionViewCell()
     }
     

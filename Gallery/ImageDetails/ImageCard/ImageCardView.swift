@@ -81,18 +81,18 @@ final class ImageCardView: UIView {
     func layout() {
         imageView.snp.remakeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? 300: 0)
+            make.leading.trailing.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? UIScreen.main.bounds.width / 3: 0)
             make.height.equalTo(UIScreen.main.bounds.height / 1.6)
         }
         
         imageDescription.snp.remakeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).inset(-14)
-            make.leading.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? 300: 16)
-            make.trailing.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? 300: 64)
+            make.leading.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? UIScreen.main.bounds.width / 3: 16)
+            make.trailing.equalToSuperview().inset(UIDevice.current.orientation != .portrait ? UIScreen.main.bounds.width / 3: 64)
             if UIDevice.current.orientation != .portrait {
                 make.height.equalTo(60)
             } else {
-                make.bottom.equalToSuperview()
+                make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
             }
         }
         

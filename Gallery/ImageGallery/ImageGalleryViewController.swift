@@ -9,7 +9,7 @@ import UIKit
 
 final class ImageGalleryViewController: UIViewController, ErrorPresentable {
     
-    private var viewModel: ImageGalleryViewModeling!
+    private var viewModel: ImageGalleryViewModeling
     private let _view = ImageGalleryView()
     
     init(viewModel: ImageGalleryViewModeling) {
@@ -107,7 +107,7 @@ extension ImageGalleryViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        if indexPath.row ==  viewModel.galleryElements.count - 3 {
+        if indexPath.row == viewModel.galleryElements.count - 3 {
             self.viewModel.getGalleryElement()
         }
     }

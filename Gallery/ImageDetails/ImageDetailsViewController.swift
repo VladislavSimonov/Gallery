@@ -9,7 +9,7 @@ import UIKit
 
 final class ImageDetailsViewController: UIViewController {
     
-    var viewModel: ImageDetailsViewModeling!
+    private var viewModel: ImageDetailsViewModeling!
     private let _view = ImageDetailsView()
     
     init(viewModel: ImageDetailsViewModeling) {

@@ -12,6 +12,8 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     weak var coordinator: MainCoordinator?
     var galleryElements: [GalleryElement] = []
     var needReloadCollectionView: (() -> Void)?
+    var showError: ((NetworkingError) -> Void)?
+    var hideLoader: (() -> Void)?
     
     private let networkingManager: NetworkingManagerProtocol
     private let storage: StorageServiceProtocol
@@ -47,6 +49,8 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
         guard hasNextPage else { return }
         
         networkingManager.request(endpoint: GalleryAPI(page: String(pageNumber))) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
+            self?.hideLoader?()
+            
             switch result {
             case .success(var galleryElements):
                 guard galleryElements.count > 0 else {
@@ -64,7 +68,7 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
                 self?.galleryElements.append(contentsOf: galleryElements)
                 self?.needReloadCollectionView?()
             case .failure(let error):
-                print(error)
+                self?.showError?(error)
             }
         }
     }

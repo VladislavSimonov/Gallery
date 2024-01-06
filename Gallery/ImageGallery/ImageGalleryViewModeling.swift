@@ -10,6 +10,8 @@ import Foundation
 protocol ImageGalleryViewModeling: AnyObject {
     var galleryElements: [GalleryElement] { get }
     var needReloadCollectionView: (() -> Void)? { get set }
+    var showError: ((NetworkingError) -> Void)? { get set }
+    var hideLoader: (() -> Void)? { get set }
      
     func getElementByIndexPath(_ indexPath: IndexPath) -> GalleryElement
     func goToDetails(selectedElementIndex: Int)

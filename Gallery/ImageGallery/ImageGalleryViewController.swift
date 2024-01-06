@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class ImageGalleryViewController: UIViewController {
+final class ImageGalleryViewController: UIViewController, ErrorPresentable {
     
-    var viewModel: ImageGalleryViewModeling!
+    private var viewModel: ImageGalleryViewModeling!
     private let _view = ImageGalleryView()
     
     init(viewModel: ImageGalleryViewModeling) {
@@ -35,6 +35,7 @@ final class ImageGalleryViewController: UIViewController {
         fillUI()
         layout()
         
+        _view.showLoader()
         viewModel.getGalleryElement()
     }
     
@@ -52,6 +53,21 @@ final class ImageGalleryViewController: UIViewController {
         viewModel.needReloadCollectionView = { [weak self] in
             DispatchQueue.main.async {
                 self?._view.collectionView.reloadData()
+            }
+        }
+        
+        viewModel.showError = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.showAlert(with: error, retryAction: { _ in
+                    self?._view.showLoader()
+                    self?.viewModel.getGalleryElement()
+                })
+            }
+        }
+        
+        viewModel.hideLoader = { [weak self] in
+            DispatchQueue.main.async {
+                self?._view.hideLoader()
             }
         }
     }

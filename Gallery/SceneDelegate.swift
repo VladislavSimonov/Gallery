@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var coordinator: Coordinator?
-    private var storage: StorageServiceProtocol?
+    private var serviceProvider = ServiceProvider()
 
     func scene(_ scene: UIScene, 
                willConnectTo session: UISceneSession,
@@ -23,12 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
-        storage = StorageService()
-        
-        if let storage {
-            coordinator = MainCoordinator(navigationController: navigationController, storage: storage)
-            coordinator?.start()
-        }
+        coordinator = MainCoordinator(navigationController: navigationController, context: serviceProvider)
+        coordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

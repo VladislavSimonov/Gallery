@@ -7,7 +7,9 @@
 
 import Foundation
 
-final class ImageGalleryViewModel: ImageGalleryViewModeling {
+typealias ImageGalleryViewModelContext = StorageProviderProtocol & NetworkProviderProtocol
+
+final class ImageGalleryViewModel<Context: ImageGalleryViewModelContext>: ImageGalleryViewModeling {
     
     weak var coordinator: ImageDetailsCoordinator?
     var galleryElements: [GalleryElement] = []
@@ -15,23 +17,21 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     var showError: ((NetworkingError) -> Void)?
     var hideLoader: (() -> Void)?
     
-    private let networkingManager: NetworkingManagerProtocol
-    private let storage: StorageServiceProtocol
+    private let context: Context
     private var hasNextPage = true
     private var pageNumber: Int = 1
     
     init(coordinator: ImageDetailsCoordinator,
          networkingManager: NetworkingManagerProtocol = NetworkingManager(),
-         storage: StorageServiceProtocol) {
+         context: Context) {
         self.coordinator = coordinator
-        self.networkingManager = networkingManager
-        self.storage = storage
+        self.context = context
     }
     
     func tagLikedPhotos() {
         galleryElements = galleryElements.map { mutableElement in
             var element = mutableElement
-            element.isLiked = storage.isFavourite(element.id)
+            element.isLiked = context.storage.isFavourite(element.id)
             return element
         }
     }
@@ -48,7 +48,7 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
     func getGalleryElement() {
         guard hasNextPage else { return }
         
-        networkingManager.request(endpoint: GalleryAPI(page: String(pageNumber))) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
+        context.network.request(endpoint: GalleryAPI(page: String(pageNumber))) { [weak self] (result: Result<[GalleryElement], NetworkingError>) in
             self?.hideLoader?()
             
             switch result {
@@ -60,7 +60,7 @@ final class ImageGalleryViewModel: ImageGalleryViewModeling {
                 
                 galleryElements = galleryElements.map { mutableElement in
                     var element = mutableElement
-                    element.isLiked = self?.storage.isFavourite(element.id)
+                    element.isLiked = self?.context.storage.isFavourite(element.id)
                     return element
                 }
                                 

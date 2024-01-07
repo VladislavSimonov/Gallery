@@ -15,14 +15,16 @@ protocol ImageDetailsCoordinator: AnyObject {
     func goToImageDetailsController(with elements: [GalleryElement], selectedElementIndex: Int)
 }
 
-class MainCoordinator: Coordinator, ImageDetailsCoordinator {
+typealias MainCoordinatorContext = ServiceProviderProtocol
+
+final class MainCoordinator<Context: MainCoordinatorContext>: Coordinator, ImageDetailsCoordinator {
     
     var navigationController: UINavigationController
-    private let storage: StorageServiceProtocol
+    private let context: Context
     
-    init(navigationController: UINavigationController, storage: StorageServiceProtocol) {
+    init(navigationController: UINavigationController, context: Context) {
         self.navigationController = navigationController
-        self.storage = storage
+        self.context = context
     }
     
     func start() {
@@ -30,7 +32,7 @@ class MainCoordinator: Coordinator, ImageDetailsCoordinator {
     }
     
     private func goToImageGalleryController() {
-        let imageGalleryViewModel = ImageGalleryViewModel(coordinator: self, storage: storage)
+        let imageGalleryViewModel = ImageGalleryViewModel(coordinator: self, context: context)
         let imageGalleryViewController = ImageGalleryViewController(viewModel: imageGalleryViewModel)
         navigationController.pushViewController(imageGalleryViewController, animated: true)
     }
@@ -38,7 +40,7 @@ class MainCoordinator: Coordinator, ImageDetailsCoordinator {
     func goToImageDetailsController(with elements: [GalleryElement], selectedElementIndex: Int) {
         let imageDetailsViewModel = ImageDetailsViewModel(galleryElements: elements,
                                                           selectedElementIndex: selectedElementIndex,
-                                                          storage: storage)
+                                                          context: context)
         let imageDetailsViewController = ImageDetailsViewController(viewModel: imageDetailsViewModel)
         navigationController.pushViewController(imageDetailsViewController, animated: true)
     }

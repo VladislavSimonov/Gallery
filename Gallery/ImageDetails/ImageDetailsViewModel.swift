@@ -7,17 +7,19 @@
 
 import Foundation
 
-final class ImageDetailsViewModel: ImageDetailsViewModeling {
-    private let storage: StorageServiceProtocol
+typealias ImageDetailsViewModelContext = StorageProviderProtocol
+
+final class ImageDetailsViewModel<Context: ImageDetailsViewModelContext>: ImageDetailsViewModeling {
+    private let context: Context
     var galleryElements: [GalleryElement] = []
     var currentElementIndex: Int
     
     init(galleryElements: [GalleryElement],
          selectedElementIndex: Int,
-         storage : StorageServiceProtocol) {
+         context: Context) {
         self.galleryElements = galleryElements
         self.currentElementIndex = selectedElementIndex
-        self.storage = storage
+        self.context = context
     }
     
     func didScrolled(to index: Int) {
@@ -36,9 +38,9 @@ final class ImageDetailsViewModel: ImageDetailsViewModeling {
             
             viewModel.likeButtonDidTouch = {
                 if galleryElement.isLiked == true {
-                    self.storage.removeFromFavourites(galleryElement.id)
+                    self.context.storage.removeFromFavourites(galleryElement.id)
                 } else {
-                    self.storage.addToFavourites(galleryElement.id)
+                    self.context.storage.addToFavourites(galleryElement.id)
                 }
             }
             

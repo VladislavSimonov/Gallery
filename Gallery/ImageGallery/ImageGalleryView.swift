@@ -13,12 +13,6 @@ final class ImageGalleryView: UIView {
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        flowLayout.sectionInset = UIEdgeInsets(
-            top: 0,
-            left: 8,
-            bottom: 0,
-            right: 8
-        )
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: flowLayout)
         collectionView.register(ImageGalleryCell.self,
@@ -29,6 +23,7 @@ final class ImageGalleryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
+        backgroundColor = .white
         setupViews()
     }
     
@@ -45,7 +40,9 @@ final class ImageGalleryView: UIView {
     
     func layout() {
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.top.bottom.equalToSuperview()
         }
     }
 }

@@ -13,7 +13,6 @@ final class ImageGalleryCell: BaseCollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .purple
         return imageView
     }()
     
@@ -34,12 +33,6 @@ final class ImageGalleryCell: BaseCollectionViewCell {
         let url = URL(string: URLstring)
         imageView.setImage(withURL: url)
         likeImage.isHidden = !isImageLiked
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        imageView.layer.cornerRadius = 12
     }
     
     override func prepareForReuse() {

@@ -1,9 +1,11 @@
 PODS:
   - Kingfisher (7.10.0)
+  - shared (1.0.7)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - Kingfisher
+  - shared (from `https://github.com/mzfkr97/SharedLibrary.git`, branch `master`)
   - SnapKit
 
 SPEC REPOS:
@@ -11,10 +13,21 @@ SPEC REPOS:
     - Kingfisher
     - SnapKit
 
+EXTERNAL SOURCES:
+  shared:
+    :branch: master
+    :git: https://github.com/mzfkr97/SharedLibrary.git
+
+CHECKOUT OPTIONS:
+  shared:
+    :commit: 8dc8da71bb16b2019949d2bfff3a17590fee926a
+    :git: https://github.com/mzfkr97/SharedLibrary.git
+
 SPEC CHECKSUMS:
   Kingfisher: a18f05d3b6d37d8650ee4a3e61d57a28fc6207f6
+  shared: 46a2642db21a09b2e9635db4eefb276367abc59f
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: ac2029e885f4b8daac6c5887d1459d5df0ce3a1b
+PODFILE CHECKSUM: 686943b5b5bd7e0ae91057c9b7d464bc02c35f43
 
 COCOAPODS: 1.11.3

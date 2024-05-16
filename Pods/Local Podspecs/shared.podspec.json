@@ -1,0 +1,18 @@
+{
+  "name": "shared",
+  "version": "1.0.7",
+  "homepage": "https://github.com/mzfkr97/SharedLibrary.git",
+  "source": {
+    "git": "https://github.com/mzfkr97/SharedLibrary.git",
+    "branch": "master"
+  },
+  "authors": "ServiceChannel mobile team",
+  "license": "MIT",
+  "summary": "ServiceChannel mobile team",
+  "vendored_frameworks": "shared.framework",
+  "requires_arc": true,
+  "libraries": "c++",
+  "platforms": {
+    "ios": "11.0"
+  }
+}

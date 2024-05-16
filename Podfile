@@ -9,6 +9,7 @@ target 'Gallery' do
 
   # Pods for Gallery
   pod 'SnapKit'
+  pod 'shared', :git => 'https://github.com/mzfkr97/SharedLibrary.git', :branch => 'master'
   pod 'Kingfisher'
 
   target 'GalleryTests' do

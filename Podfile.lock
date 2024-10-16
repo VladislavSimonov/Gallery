@@ -9,12 +9,14 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (4.0.0)
   - PhoneNumberKit/UIKit (4.0.0):
     - PhoneNumberKit/PhoneNumberKitCore
+  - ReactiveObjC (3.1.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - CocoaLumberjack (= 3.5.3)
   - Kingfisher
   - PhoneNumberKit
+  - ReactiveObjC (= 3.1.0)
   - SnapKit
 
 SPEC REPOS:
@@ -22,14 +24,16 @@ SPEC REPOS:
     - CocoaLumberjack
     - Kingfisher
     - PhoneNumberKit
+    - ReactiveObjC
     - SnapKit
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
   Kingfisher: a18f05d3b6d37d8650ee4a3e61d57a28fc6207f6
   PhoneNumberKit: fca23e22dcd17f602577f177bdd502512190e52e
+  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 5b554a085a5dad6a283f4c09fa52fe39615e6d94
+PODFILE CHECKSUM: e2f1a5a2147776d35dd849cc6c7b29fc0a0a92cd
 
 COCOAPODS: 1.11.3

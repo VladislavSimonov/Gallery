@@ -12,6 +12,7 @@ target 'Gallery' do
   pod 'Kingfisher'
   pod 'PhoneNumberKit'
   pod 'CocoaLumberjack', '3.5.3'
+  pod 'ReactiveObjC', '3.1.0'
 
   target 'GalleryTests' do
     inherit! :search_paths

@@ -2,6 +2,9 @@ PODS:
   - CocoaLumberjack (3.5.3):
     - CocoaLumberjack/Core (= 3.5.3)
   - CocoaLumberjack/Core (3.5.3)
+  - EasyMapping (0.18.1):
+    - EasyMapping/Core (= 0.18.1)
+  - EasyMapping/Core (0.18.1)
   - Kingfisher (7.10.0)
   - PhoneNumberKit (4.0.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 4.0.0)
@@ -14,6 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - CocoaLumberjack (= 3.5.3)
+  - EasyMapping (= 0.18.1)
   - Kingfisher
   - PhoneNumberKit
   - ReactiveObjC (= 3.1.0)
@@ -22,6 +26,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CocoaLumberjack
+    - EasyMapping
     - Kingfisher
     - PhoneNumberKit
     - ReactiveObjC
@@ -29,11 +34,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
+  EasyMapping: 2637b5bac13b6450bc799c28791a419e58c946b0
   Kingfisher: a18f05d3b6d37d8650ee4a3e61d57a28fc6207f6
   PhoneNumberKit: fca23e22dcd17f602577f177bdd502512190e52e
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: e2f1a5a2147776d35dd849cc6c7b29fc0a0a92cd
+PODFILE CHECKSUM: 0dfed6a63ede013b6e8559e77e487aae921d3213
 
 COCOAPODS: 1.11.3

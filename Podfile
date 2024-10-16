@@ -9,6 +9,7 @@ target 'Gallery' do
 
   # Pods for Gallery
   pod 'SnapKit'
+  pod 'EasyMapping', '0.18.1'
   pod 'Kingfisher'
   pod 'PhoneNumberKit'
   pod 'CocoaLumberjack', '3.5.3'
